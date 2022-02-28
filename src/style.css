@@ -1,0 +1,10 @@
+.container>div {
+    display: inline-block;
+    /*margin-right: 45%;*/
+}
+h2,h1{
+    text-align: center;
+}
+.enemy{
+    float: right;
+}
