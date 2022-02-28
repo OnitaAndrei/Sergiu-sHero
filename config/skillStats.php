@@ -42,21 +42,9 @@ return [
         [
             'attack' =>
                 [
-                    [
-                        'name' => 'Rapid Strike',
-                        'chance' => 0,
-                        'numberOfStrikes' => 0,
-                        'buff' => 0
-                    ]
                 ],
             'defence' =>
                 [
-                    [
-                        'name' => 'Magic Shield',
-                        'chance' => 0,
-                        'reducedDamage' => 0
-                    ],
-
                 ]
         ]
 ];
