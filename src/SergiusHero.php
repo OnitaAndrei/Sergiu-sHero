@@ -7,6 +7,7 @@
 <img style="width: 500px;height:  500px" src="../src/battle.png">
 <img style="float: right" src="../src/enemy.jpg">
 <?php
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -14,20 +15,37 @@ include "skill.php";
 include "character.php";
 include "hero.php";
 include "enemy.php";
+
 //initialize hero stats
 $stats = include "../config/heroStats.php";
-$hero = new hero($stats['name'], $stats['health']['min'], $stats['health']['max'],
-    $stats['strength']['min'], $stats['strength']['max']
-    , $stats['defence']['min'], $stats['defence']['max']
-    , $stats['speed']['min'], $stats['speed']['max']
-    , $stats['luck']['min'], $stats['luck']['max']);
+$hero = new hero(
+    $stats['name'],
+    $stats['health']['min'],
+    $stats['health']['max'],
+    $stats['strength']['min'],
+    $stats['strength']['max'],
+    $stats['defence']['min'],
+    $stats['defence']['max'],
+    $stats['speed']['min'],
+    $stats['speed']['max'],
+    $stats['luck']['min'],
+    $stats['luck']['max']
+);
 //initialize enemy stats
 $stats = include "../config/enemyStats.php";
-$enemy = new enemy($stats['name'], $stats['health']['min'], $stats['health']['max'],
-    $stats['strength']['min'], $stats['strength']['max']
-    , $stats['defence']['min'], $stats['defence']['max']
-    , $stats['speed']['min'], $stats['speed']['max']
-    , $stats['luck']['min'], $stats['luck']['max']);
+$enemy = new enemy(
+    $stats['name'],
+    $stats['health']['min'],
+    $stats['health']['max'],
+    $stats['strength']['min'],
+    $stats['strength']['max'],
+    $stats['defence']['min'],
+    $stats['defence']['max'],
+    $stats['speed']['min'],
+    $stats['speed']['max'],
+    $stats['luck']['min'],
+    $stats['luck']['max']
+);
 //initialize number of rounds
 $turns = include "../config/turns.php";
 $turnCounter = 1;
@@ -35,7 +53,7 @@ $turnCounter = 1;
 $heroFirst = false;
 if ($hero->getSpeed() > $enemy->getSpeed()) {
     $heroFirst = true;
-} else if ($hero->getSpeed() == $enemy->getSpeed()) {
+} elseif ($hero->getSpeed() == $enemy->getSpeed()) {
     if ($hero->getLuck() > $enemy->getLuck()) {
         $heroFirst = true;
     }
@@ -47,15 +65,17 @@ displayStatsEnemy($enemy);
 echo "</div>";
 //battle loop
 while ($turnCounter <= $turns && $hero->getHealth() > 0 && $enemy->getHealth() > 0) {
-    echo "<h1 style='color:gold;  -webkit-text-stroke-width: 1px; -webkit-text-stroke-color: black;'>Turn: $turnCounter </h1>";
+    echo "<h1 id='turn'>Turn: $turnCounter </h1>";
     if ($heroFirst) {
         $hero->attack($enemy);
-        if ($enemy->getHealth() > 0)
+        if ($enemy->getHealth() > 0) {
             $enemy->attack($hero);
+        }
     } else {
         $enemy->attack($hero);
-        if ($hero->getHealth() > 0)
+        if ($hero->getHealth() > 0) {
             $hero->attack($enemy);
+        }
     }
     //display stats after each round
     echo "<div class='container'>";
@@ -65,7 +85,7 @@ while ($turnCounter <= $turns && $hero->getHealth() > 0 && $enemy->getHealth() >
     $turnCounter++;
 }
 //displaying battle result
-if ($turnCounter == $turns+1) {
+if ($turnCounter == $turns + 1) {
     echo "<h1>TIE!</h1>";
 } elseif ($hero->getHealth() <= 0) {
     echo "<h1>FAIL!</h1>";

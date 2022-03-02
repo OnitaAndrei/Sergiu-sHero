@@ -1,13 +1,33 @@
 <?php
-
-class enemy extends character
+class Enemy extends Character
 {
-    function __construct(string $name, int $minHealth, int $maxHealth, int $minStrength, int $maxStrength, int $minDefence,
-                         int    $maxDefence, int $minSpeed, int $maxSpeed, int $minLuck, int $maxLuck)
-    {
-        parent::__construct($name, $minHealth, $maxHealth, $minStrength, $maxStrength, $minDefence,
-            $maxDefence, $minSpeed, $maxSpeed, $minLuck, $maxLuck);
+    public function __construct(
+        string $name,
+        int $minHealth,
+        int $maxHealth,
+        int $minStrength,
+        int $maxStrength,
+        int $minDefence,
+        int $maxDefence,
+        int $minSpeed,
+        int $maxSpeed,
+        int $minLuck,
+        int $maxLuck
+    ) {
+        parent::__construct(
+            $name,
+            $minHealth,
+            $maxHealth,
+            $minStrength,
+            $maxStrength,
+            $minDefence,
+            $maxDefence,
+            $minSpeed,
+            $maxSpeed,
+            $minLuck,
+            $maxLuck
+        );
         $stats = include "../config/skillStats.php";
-        $this->skill = new skills($stats['enemy']);
+        $this->skill = new Skills($stats['enemy']);
     }
 }

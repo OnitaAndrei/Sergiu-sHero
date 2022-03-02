@@ -1,6 +1,5 @@
 <?php
-
-abstract class character
+abstract class Character
 {
     public string $name;
     public int $health;
@@ -8,11 +7,21 @@ abstract class character
     public int $defence;
     public int $speed;
     public int $luck;
-    public skills $skill;
+    public Skills $skill;
 
-    function __construct(string $name, int $minHealth, int $maxHealth, int $minStrength, int $maxStrength, int $minDefence,
-                         int    $maxDefence, int $minSpeed, int $maxSpeed, int $minLuck, int $maxLuck)
-    {
+    public function __construct(
+        string $name,
+        int $minHealth,
+        int $maxHealth,
+        int $minStrength,
+        int $maxStrength,
+        int $minDefence,
+        int $maxDefence,
+        int $minSpeed,
+        int $maxSpeed,
+        int $minLuck,
+        int $maxLuck
+    ) {
         $this->name = $name;
         $this->health = rand($minHealth, $maxHealth);
         $this->strength = rand($minStrength, $maxStrength);
@@ -89,7 +98,8 @@ abstract class character
             }
             $damage = $this->skill->basicAttack($this, $defender);
             echo "<h2 style='color: red'>$defender->name took $damage damage</h2>";
-        } else echo "<h2 style='color: gray'>$defender->name dodged</h2>";
+        } else {
+            echo "<h2 style='color: gray'>$defender->name dodged</h2>";
+        }
     }
-
 }

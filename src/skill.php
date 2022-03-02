@@ -1,24 +1,23 @@
 <?php
-
-class skills
+class Skills
 {
     public array $skillStats;
 
-    function __construct(array $skillStats)
+    public function __construct(array $skillStats)
     {
         $this->skillStats = $skillStats;
     }
 
     /**
-     * @param character $attacker
-     * @param character $defender
+     * @param Character $attacker
+     * @param Character $defender
      * @param int $numberOfStrikes
      * @return int (dealt damage)
      * calculate damage
      * run magic shield to check if the damage was reduced
      * deal damage as many times as numberOfStrikes
      */
-    private function attack(character $attacker, character $defender, int $numberOfStrikes): int
+    private function attack(Character $attacker, Character $defender, int $numberOfStrikes): int
     {
         $damage = $attacker->getStrength() - $defender->getDefence();
         $damage = $this->magicShield($defender, $damage);
@@ -30,23 +29,23 @@ class skills
         return $damage * $numberOfStrikes;
     }
 
-    public function basicAttack(character $attacker, character $defender): int
+    public function basicAttack(Character $attacker, Character $defender): int
     {
         return $this->attack($attacker, $defender, 1);
     }
 
-    public function rapidStrike(character $attacker, character $defender, int $numberOfStrikes): int
+    public function rapidStrike(Character $attacker, Character $defender, int $numberOfStrikes): int
     {
         return $this->attack($attacker, $defender, $numberOfStrikes);
     }
 
     /**
-     * @param character $defender
+     * @param Character $defender
      * @param int $damage
      * @return int
      * check if any defensive skill is used and apply damage reduction
      */
-    public function magicShield(character $defender, int $damage): int
+    public function magicShield(Character $defender, int $damage): int
     {
         foreach ($defender->skill->skillStats['defence'] as $skill) {
             $rnd = rand(0, 100);
@@ -58,5 +57,4 @@ class skills
         }
         return $damage;
     }
-
 }

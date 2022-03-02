@@ -1,0 +1,24 @@
+{
+    "name": "oni/sergius-hero",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Oni\\SergiusHero\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "OnitaAndrei",
+            "email": "onitaandrei2000@gmail.com"
+        }
+    ],
+    "require": {
+        "oni/new-folder": "dev-main"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url" : "https://github.com/OnitaAndrei/Composer.git"
+        }
+    ]
+}
