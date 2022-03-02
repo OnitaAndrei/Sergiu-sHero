@@ -6,5 +6,5 @@ include "../src/SergiusHero.php";
 //error_reporting(E_ALL);
 require "../vendor/autoload.php";
 use Oni\Project\Hello;
-//$hello = new Hello();
-//$hello->helloWorld();
+$hello = new Hello();
+$hello->helloWorld();
